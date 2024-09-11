@@ -1,0 +1,6 @@
+#!/usr/bin/env bash
+mv "$HOME/.zshrc" "$HOME/.bkp_zshrc"
+mv "$HOME/.vimrc" "$HOME/.bkp_vimrc"
+echo 'Created backups of configuration files (.bkp_zshrc and .bkp_vimrc).'
+cp .zshrc .vimrc "$HOME/."
+echo 'Configuration installed.'
