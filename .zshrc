@@ -14,6 +14,13 @@ if [ ! -d "$ZINIT_HOME" ]; then
   git clone git@github.com:zdharma-continuum/zinit.git "$ZINIT_HOME"
 fi
 
+# Download fzf if it does not exist
+if [ ! -e "$HOME/.fzf.zsh" ]; then
+  echo 'cant find fzf'
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+fi
+
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
 
@@ -21,10 +28,10 @@ source "${ZINIT_HOME}/zinit.zsh"
 zinit ice depth=1; zinit light romkatv/powerlevel10k
 
 # Add in zsh plugins
+zinit light Aloxaf/fzf-tab
 zinit light zsh-users/zsh-syntax-highlighting
 zinit light zsh-users/zsh-completions
 zinit light zsh-users/zsh-autosuggestions
-zinit light Aloxaf/fzf-tab
 
 # Add in snippets
 zinit snippet OMZP::git
@@ -72,5 +79,5 @@ alias activate='source env/bin/activate'
 # python
 alias py='python3'
 
-# Shell integrations
-eval "$(fzf --zsh)"
+# Set up fzf key bindings and fuzzy completion
+source <(fzf --zsh)
