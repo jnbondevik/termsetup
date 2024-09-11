@@ -5,6 +5,7 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+
 # Set the directory to store the zinit plugin manager and plugins
 ZINIT_HOME="${HOME}/.local/share/zinit/zinit.git"
 
@@ -19,6 +20,8 @@ if [ ! -e "$HOME/.fzf.zsh" ]; then
   git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
   ~/.fzf/install
 fi
+
+# Initialize fzf
 
 # Load zinit
 source "${ZINIT_HOME}/zinit.zsh"
@@ -65,8 +68,8 @@ zstyle ':completion:*' list-colors "${(s.:.)LS_COLORS}"
 zstyle ':completion:*' menu no
 
 # Aliases
-alias l='ls -t --color'
-alias ll='ls -tlah --color'
+alias l='ls -tr --color'
+alias ll='ls -trlah --color'
 # transmission
 alias td='transmission-daemon'
 alias tq='transmission-remote --exit'
@@ -79,4 +82,5 @@ alias activate='source env/bin/activate'
 alias py='python3'
 
 # Set up fzf key bindings and fuzzy completion
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 source <(fzf --zsh)
